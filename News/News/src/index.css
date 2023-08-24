@@ -16,5 +16,4 @@ body {
 #root {
   position: relative; /* root 요소의 포지션을 relative로 설정 */
   min-height: 100vh; /* 최소 화면 높이 만큼 지정 */
-  background-color: blue;
 }
