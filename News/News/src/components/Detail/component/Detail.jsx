@@ -1,13 +1,14 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { ArticleContent, ArticleImg } from '../../../styles/StyleSheet';
+import DetailHeader from './DetailHeader';
 
 const Detail = () => {
   const location = useLocation();
   const url = location.state.url;
   const date = location.state.date;
   const [data, setData] = useState(null);
-  console.log(date);
   const fetchData = async (url) => {
     const options = {
       method: 'POST',
@@ -37,13 +38,11 @@ const Detail = () => {
   return (
     <>
       {data && (
-        <>
-          <h1>{data.title}</h1>
-          <span>{data.author}</span>
-          <span>{date.slice(0, 10)}</span>
-          <img src={data.topImage} />
-          <div dangerouslySetInnerHTML={{ __html: data.html }} />
-        </>
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
+          <DetailHeader data={data} date={date} />
+          <ArticleImg src={data.topImage} />
+          <ArticleContent dangerouslySetInnerHTML={{ __html: data.html }} />
+        </div>
       )}
     </>
   );

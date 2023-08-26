@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import NewsCardItem from './NewsCardItem';
-import { countryList, countryToLanguageMap } from '../../../utils/constans.js';
-import { setArticleTCList } from '../../../store/slices/articleSlice';
-import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setArticleTCList } from '../../../store/slices/articleSlice';
+import { setTopArticle } from '../../../store/slices/topSlice';
 import { NewsCardItemWrap, NewsCardList } from '../../../styles/StyleSheet';
+import { countryList } from '../../../utils/constans.js';
+import NewsCardItem from './NewsCardItem';
 
 const NewsCard = () => {
   const apiKey = '21389cfb13fd4f64a1143c0bfed8aedd';
@@ -32,6 +33,7 @@ const NewsCard = () => {
           content: article.content,
         }));
         dispatch(setArticleTCList(extractData));
+        dispatch(setTopArticle(response.data.articles.slice(0, 3)));
       })
       .catch((error) => {
         console.error('Error fetching data:', error);

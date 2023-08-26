@@ -105,5 +105,59 @@ export const NewsCardItemWrap = styled.div`
   justify-self: center; // inline-block을 선언하고 grid의 중앙에 정렬하기 위함
 `;
 
-// Detail
+// DetailPage
 export const DetailWrap = styled.div``;
+
+// DetailHeader
+export const ArticleHeaderWrap = styled.div`
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #dbdbdb;
+`;
+
+export const ArticleTitle = styled.div`
+  font-size: 40px;
+  font-weight: bold;
+`;
+export const DetailInfo = styled.p`
+  padding-bottom: 1rem;
+`;
+
+export const ArticleAuthor = styled.span`
+  border-right: 1px solid #dbdbdb;
+  padding: 0 calc(1rem / 2);
+
+`;
+export const ArticleSite = styled.h2``;
+export const ArticleTime = styled.span`
+  color: #929294;
+  border-right: 1px solid #dbdbdb;
+  padding-right: calc(1rem / 2);
+
+`;
+
+export const ArticleImg = styled.img``;
+export const ArticleContent = styled.div``;
+
+// TopCard
+export const TopCardWrap = styled.div`
+  border-left: 1px solid #dbdbdb;
+`;
+
+// TopCardItem
+export const TopCardItemWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 25rem;
+  margin-bottom: 2rem;
+  margin-left: 1rem;
+`;
+
+export const TopCardImg = styled.img.attrs((props) => ({
+  src: props.$url
+}))`
+  height: 5rem;
+  margin-right: 1rem;
+`;
+export const TopCardTitle = styled.div`
+  font-weight: bold;
+`;
