@@ -111,3 +111,13 @@ export const countryToLanguageMap = {
   ve: 'es', // Venezuela - Spanish
   za: 'af', // South Africa - Afrikaans
 };
+
+export const categories = [
+  "business",
+  "entertainment",
+  "general",
+  "health",
+  "science",
+  "sports",
+  "technology"
+];

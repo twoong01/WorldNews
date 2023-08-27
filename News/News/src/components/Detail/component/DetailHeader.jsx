@@ -9,7 +9,7 @@ const DetailHeader = ({data, date}) => {
       <ArticleTitle>{data.title}</ArticleTitle>
       <DetailInfo>
         <ArticleTime>{date.slice(0, 10)}</ArticleTime>
-        <ArticleAuthor>{data.author}</ArticleAuthor>
+        <ArticleAuthor>{data.author ? data.author : '익명'}</ArticleAuthor>
       </DetailInfo>
     </ArticleHeaderWrap>
   )

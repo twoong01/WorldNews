@@ -9,8 +9,12 @@ const DetailPage = () => {
     <DetailWrap>
       <Layout>
         <div style={{ display: 'flex', flexDirection: 'row'}}>
-          <Detail />
-          <TopCard />
+          <div style={{ flex: '1', maxWidth: '70%'}}>
+            <Detail />
+          </div>
+          <div style={{ flex: '1', maxWidth: '30%'}}>
+            <TopCard />
+          </div>
         </div>
       </Layout>
     </DetailWrap>

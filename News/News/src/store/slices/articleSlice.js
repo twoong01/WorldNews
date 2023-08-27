@@ -3,10 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 export const articleSlice = createSlice({
   name: 'article',
   initialState: {
+    country: 'us',
     article_list: [],
     article_tc_list: [],
   },
   reducers: {
+    setCountry: (state, action) => {
+      state.country = action.payload;
+    },
     setArticleList: (state, action) => {
       state.article_list = action.payload;
     },
@@ -16,5 +20,5 @@ export const articleSlice = createSlice({
   },
 });
 
-export const { setArticleList, setArticleTCList } = articleSlice.actions;
+export const { setArticleList, setArticleTCList, setCountry } = articleSlice.actions;
 export default articleSlice.reducer;

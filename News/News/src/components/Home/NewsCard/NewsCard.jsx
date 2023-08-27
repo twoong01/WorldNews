@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setArticleTCList } from '../../../store/slices/articleSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setArticleList, setArticleTCList, setCountry } from '../../../store/slices/articleSlice';
 import { setTopArticle } from '../../../store/slices/topSlice';
 import { NewsCardItemWrap, NewsCardList } from '../../../styles/StyleSheet';
 import { countryList } from '../../../utils/constans.js';
@@ -9,9 +9,9 @@ import NewsCardItem from './NewsCardItem';
 
 const NewsCard = () => {
   const apiKey = '21389cfb13fd4f64a1143c0bfed8aedd';
-  const [country, setCountry] = useState('us');
+  const country = useSelector((state) => state.article.country);
+  const article_list = useSelector((state) => state.article.article_list);
   const dispatch = useDispatch();
-  const [article_list, setArticleList] = useState(null);
   useEffect(() => {
     const config1 = {
       headers: {
@@ -22,12 +22,12 @@ const NewsCard = () => {
       },
     };
 
-    // To query /v2/top-headlines
+    // 헤드라인 30개 api
     axios
       .get(`https://newsapi.org/v2/top-headlines`, config1)
       .then((response) => {
         console.log('Top Headlines:', response.data);
-        setArticleList(response.data.articles);
+        dispatch(setArticleList(response.data.articles));
         const extractData = response.data.articles.map((article) => ({
           title: article.title,
           content: article.content,
@@ -42,7 +42,7 @@ const NewsCard = () => {
 
   return (
     <>
-      <select value={country} onChange={(e) => setCountry(e.target.value)}>
+      <select value={country} onChange={(e) => dispatch(setCountry(e.target.value))}>
         {countryList.map((countryName, index) => (
           <option value={countryName} key={index}>
             {countryName}

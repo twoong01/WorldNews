@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HeaderWrap,
-  TitleWrap,
-  MenuWrap,
-  MenuItem,
   LeftHeader,
   RightHeader,
-  SearchBar,
-  SearchImg,
-  SearchInput,
+  TitleWrap,
 } from '../../styles/StyleSheet';
-import SearchIcon from '../../assets/SearchIcon.svg';
+import Menu from './Menu';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -35,18 +31,10 @@ const Header = () => {
     <HeaderWrap $scrolled={scrolled}>
       <LeftHeader>
         <TitleWrap>BREAKING.news</TitleWrap>
-        <MenuWrap>
-          <MenuItem>Category</MenuItem>
-          <MenuItem>Pages</MenuItem>
-          <MenuItem>Contact Us</MenuItem>
-          <MenuItem>About Us</MenuItem>
-        </MenuWrap>
+        <Menu />
       </LeftHeader>
       <RightHeader>
-        <SearchBar>
-          <SearchImg $img={SearchIcon} />
-          <SearchInput placeholder="Search" />
-        </SearchBar>
+        <SearchBar />
       </RightHeader>
     </HeaderWrap>
   );

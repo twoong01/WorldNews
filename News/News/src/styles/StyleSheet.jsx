@@ -22,16 +22,6 @@ export const TitleWrap = styled.h1`
   margin: 0;
 `;
 
-export const MenuWrap = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  margin-left: 68px;
-`;
-export const MenuItem = styled.div`
-  font-size: 20px;
-  padding-left: 68px;
-`;
-
 export const LeftHeader = styled.div`
   display: flex;
   align-items: center;
@@ -41,7 +31,7 @@ export const LeftHeader = styled.div`
 export const RightHeader = styled.div`
   margin-right: 30px;
 `;
-export const SearchBar = styled.div`
+export const SearchBarWrap = styled.div`
   width: 400px;
   height: 48px;
   background-color: #f5f5f5;
@@ -75,6 +65,29 @@ export const MainWrap = styled.main`
   width: 100%;
   height: 100%;
   padding-top: 120px;
+`;
+
+// Menu
+export const MenuWrap = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  margin-left: 68px;
+`;
+export const MenuItem = styled.div`
+  font-size: 20px;
+  padding-left: 68px;
+`;
+
+export const DropDown = styled.div`
+  position: absolute;
+  top: 100%; /* Dropdown을 부모 요소 아래에 나타나도록 설정 */
+  background-color: white; /* Dropdown 배경색 설정 */
+  border: 1px solid #ccc;
+  max-width: 200px; /* 최대 너비 설정 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  z-index: 1; /* 필요에 따라 z-index 설정 */
+  display: flex;
+  flex-direction: column;
 `;
 
 // HOME
@@ -141,6 +154,7 @@ export const ArticleContent = styled.div``;
 // TopCard
 export const TopCardWrap = styled.div`
   border-left: 1px solid #dbdbdb;
+  margin-left: 1rem;
 `;
 
 // TopCardItem

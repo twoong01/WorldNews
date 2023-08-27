@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ArticleContent, ArticleImg } from '../../../styles/StyleSheet';
+import { ArticleContent } from '../../../styles/StyleSheet';
 import DetailHeader from './DetailHeader';
 
 const Detail = () => {
@@ -40,7 +40,6 @@ const Detail = () => {
       {data && (
         <div style={{ display: 'flex', flexDirection: 'column'}}>
           <DetailHeader data={data} date={date} />
-          <ArticleImg src={data.topImage} />
           <ArticleContent dangerouslySetInnerHTML={{ __html: data.html }} />
         </div>
       )}
