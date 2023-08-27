@@ -4,6 +4,7 @@ export const articleSlice = createSlice({
   name: 'article',
   initialState: {
     country: 'us',
+    category: null,
     article_list: [],
     article_tc_list: [],
   },
@@ -17,8 +18,12 @@ export const articleSlice = createSlice({
     setArticleTCList: (state, action) => {
       state.article_tc_list = action.payload;
     },
+    setCategory: (state, action) => {
+      state.category = action.payload;
+    },
   },
 });
 
-export const { setArticleList, setArticleTCList, setCountry } = articleSlice.actions;
+export const { setArticleList, setArticleTCList, setCountry, setCategory } =
+  articleSlice.actions;
 export default articleSlice.reducer;

@@ -4,12 +4,16 @@ import {
   LeftHeader,
   RightHeader,
   TitleWrap,
+  MenuButton,
 } from '../../styles/StyleSheet';
 import Menu from './Menu';
 import SearchBar from './SearchBar';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +31,19 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    console.log(menuOpen);
+  };
+
   return (
     <HeaderWrap $scrolled={scrolled}>
       <LeftHeader>
-        <TitleWrap>BREAKING.news</TitleWrap>
+        <TitleWrap onClick={() => navigate('/')}>BREAKING.news</TitleWrap>
+        <MenuButton onClick={toggleMenu}>
+          <span>&#9776;</span>
+        </MenuButton>
         <Menu />
       </LeftHeader>
       <RightHeader>

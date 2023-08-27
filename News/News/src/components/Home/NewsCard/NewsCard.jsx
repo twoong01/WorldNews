@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setArticleList, setArticleTCList, setCountry } from '../../../store/slices/articleSlice';
+import { setArticleList, setArticleTCList } from '../../../store/slices/articleSlice';
 import { setTopArticle } from '../../../store/slices/topSlice';
 import { NewsCardItemWrap, NewsCardList } from '../../../styles/StyleSheet';
-import { countryList } from '../../../utils/constans.js';
 import NewsCardItem from './NewsCardItem';
+import CurrentInfo from './CurrentInfo';
 
 const NewsCard = () => {
   const apiKey = '21389cfb13fd4f64a1143c0bfed8aedd';
@@ -42,13 +42,7 @@ const NewsCard = () => {
 
   return (
     <>
-      <select value={country} onChange={(e) => dispatch(setCountry(e.target.value))}>
-        {countryList.map((countryName, index) => (
-          <option value={countryName} key={index}>
-            {countryName}
-          </option>
-        ))}
-      </select>
+      <CurrentInfo />
       <NewsCardList>
         {article_list &&
           article_list.map((value, index) => (
