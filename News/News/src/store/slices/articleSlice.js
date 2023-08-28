@@ -21,9 +21,21 @@ export const articleSlice = createSlice({
     setCategory: (state, action) => {
       state.category = action.payload;
     },
+    setCountryReset: (state) => {
+      state.country = 'us';
+    },
+    setCategoryReset: (state) => {
+      state.category = null;
+    },
   },
 });
 
-export const { setArticleList, setArticleTCList, setCountry, setCategory } =
-  articleSlice.actions;
+export const {
+  setArticleList,
+  setArticleTCList,
+  setCountry,
+  setCategory,
+  setCountryReset,
+  setCategoryReset,
+} = articleSlice.actions;
 export default articleSlice.reducer;

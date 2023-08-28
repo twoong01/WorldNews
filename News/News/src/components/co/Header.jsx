@@ -9,11 +9,14 @@ import {
 import Menu from './Menu';
 import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
+import { setCategoryReset, setCountry } from '../../store/slices/articleSlice';
+import { useDispatch } from 'react-redux';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,11 +39,16 @@ const Header = () => {
     setMenuOpen(!menuOpen);
     console.log(menuOpen);
   };
+  const handleTitle = () => {
+    navigate('/');
+    dispatch(setCountry('us'));
+    dispatch(setCategoryReset());
+  };
 
   return (
     <HeaderWrap $scrolled={scrolled}>
       <LeftHeader>
-        <TitleWrap onClick={() => navigate('/')}>BREAKING.news</TitleWrap>
+        <TitleWrap onClick={handleTitle}>BREAKING.news</TitleWrap>
         <MenuButton onClick={toggleMenu}>
           <span>&#9776;</span>
         </MenuButton>

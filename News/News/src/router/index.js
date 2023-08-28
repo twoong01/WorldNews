@@ -1,6 +1,7 @@
 import HomePage from '../components/Home/HomePage';
 import DetailPage from '../components/Detail/DetailPage';
 import AboutPage from '../components/About/AboutPage';
+import SearchedPage from '../components/Home/SearchedPage';
 
 const routes = [
   {
@@ -14,6 +15,10 @@ const routes = [
   {
     path: '/about',
     Component: AboutPage,
+  },
+  {
+    path: '/search/:content',
+    Component: SearchedPage,
   },
 ];
 

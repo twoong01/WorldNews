@@ -1,10 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { DropDown, MenuItem, MenuWrap } from '../../styles/StyleSheet';
 import { categories, countryNames } from '../../utils/constans';
-import { setCountry, setCategory } from '../../store/slices/articleSlice';
+import {
+  setCountry,
+  setCategory,
+  setCategoryReset,
+  setArticleList,
+} from '../../store/slices/articleSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Menu = ({ open }) => {
@@ -35,14 +39,21 @@ const Menu = ({ open }) => {
       )
       .then((res) => {
         console.log(res.data);
+        dispatch(setArticleList(res.data.articles));
       })
       .catch((err) => {
         console.log(err);
       });
   };
   const handleCategory = (category) => {
+    navigate('/');
     dispatch(setCategory(category));
     changeCategory(category);
+  };
+
+  const changeCountry = (countryCode) => {
+    dispatch(setCountry(countryCode));
+    dispatch(setCategoryReset());
   };
 
   return (
@@ -52,9 +63,9 @@ const Menu = ({ open }) => {
         {dropDownState.category && (
           <DropDown>
             {Object.entries(categories).map(([category, displayName], index) => (
-              <Link key={index} onClick={() => handleCategory(category)}>
+              <div key={index} onClick={() => handleCategory(category)}>
                 {displayName}
-              </Link>
+              </div>
             ))}
           </DropDown>
         )}
@@ -64,7 +75,7 @@ const Menu = ({ open }) => {
         {dropDownState.country && (
           <DropDown>
             {Object.entries(countryNames).map(([countryCode, countryName], index) => (
-              <div key={index} onClick={() => dispatch(setCountry(countryCode))}>
+              <div key={index} onClick={() => changeCountry(countryCode)}>
                 {countryName}
               </div>
             ))}

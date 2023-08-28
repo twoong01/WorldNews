@@ -203,7 +203,6 @@ export const TopCardTitle = styled.div`
 // CurrentInfo
 export const CurInfo = styled.div`
   display: flex;
-  justify-content: space-between;
   padding: 0 1rem;
 `;
 
@@ -278,3 +277,18 @@ export const ApiName = styled.div`
   font-weight: bold;
   padding: 0 2rem;
 `;
+
+// HashTag
+export const HashTagWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #fc4308;
+  border-radius: 6px;
+  color: white;
+  background: #fc4308;
+  font-size: 20pt;
+  font-weight: bold;
+  margin-right: 10px;
+`;
+
+export const SearchPageWrap = styled.div``;
