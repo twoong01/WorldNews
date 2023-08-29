@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 // Header
 export const HeaderWrap = styled.div`
@@ -292,3 +292,56 @@ export const HashTagWrap = styled.div`
 `;
 
 export const SearchPageWrap = styled.div``;
+
+const slide = keyframes`
+  0% {
+    left: -7rem;
+  }
+
+  50% {
+    left: calc(100% - 3rem);
+  }
+
+  100% {
+    left: -7rem;
+  }
+`;
+
+export const Loader = styled.div`
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 50%;
+`;
+
+export const Bubble = styled.div`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fc4308;
+`;
+
+const pulse = keyframes`
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: .25;
+    transform: scale(.75);
+  }
+`;
+
+export const PulsingBubble = styled(Bubble)`
+  animation: ${pulse} 0.4s ease infinite alternate;
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+`;

@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ArticleContent } from '../../../styles/StyleSheet';
 import DetailHeader from './DetailHeader';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsLoading } from '../../../store/slices/utilSlice';
 
 const Detail = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const url = location.state.url;
   const date = location.state.date;
   const [data, setData] = useState(null);
   const fetchData = async (url) => {
+    dispatch(setIsLoading(true));
     const options = {
       method: 'POST',
       url: 'https://magicapi-article-extraction.p.rapidapi.com/extract',
@@ -26,8 +30,11 @@ const Detail = () => {
     try {
       const response = await axios.request(options);
       setData(response.data);
+      console.log(response.data);
     } catch (error) {
       console.error(error);
+    } finally {
+      dispatch(setIsLoading(false));
     }
   };
 
@@ -38,7 +45,7 @@ const Detail = () => {
   return (
     <>
       {data && (
-        <div style={{ display: 'flex', flexDirection: 'column'}}>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           <DetailHeader data={data} date={date} />
           <ArticleContent dangerouslySetInnerHTML={{ __html: data.html }} />
         </div>

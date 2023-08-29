@@ -9,22 +9,21 @@ const TopCard = () => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if(contentRef.current){
+    if (contentRef.current) {
       const newContentHeight = contentRef.current.clientHeight;
       setContentHeight(newContentHeight);
     }
-  }, [topArticles])
+  }, [topArticles]);
 
-
-  return(
-    <TopCardWrap style={{height: contentHeight}}>
+  return (
+    <TopCardWrap style={{ height: contentHeight }}>
       <div ref={contentRef}>
-          {topArticles.map((value, index) => (
-            <TopCardItem key={index} value={value} />
-          ))}
-        </div>
+        {topArticles.map((value, index) => (
+          <TopCardItem key={index} value={value} index={index} />
+        ))}
+      </div>
     </TopCardWrap>
   );
-}
+};
 
 export default TopCard;
