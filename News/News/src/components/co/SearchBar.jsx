@@ -5,6 +5,7 @@ import SearchIcon from '../../assets/SearchIcon.svg';
 import { setArticleList, setCategory, setCountry } from '../../store/slices/articleSlice';
 import { SearchBarWrap, SearchImg, SearchInput } from '../../styles/StyleSheet';
 import { useNavigate } from 'react-router-dom';
+import { setIsLoading } from '../../store/slices/utilSlice';
 
 const SearchBar = () => {
   const [value, setValue] = useState(null);
@@ -14,12 +15,14 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const SearchFetch = async () => {
+    dispatch(setIsLoading(true));
     await axios
       .get(
         `https://newsapi.org/v2/everything?q=${value}&from=${curDate}&sortBy=publishedAt&apiKey=${API_KEY}`
       )
       .then((res) => {
-        navigate(`/search/${value}`);
+        console.log(res.data);
+        navigate(`/search/${value}`, { state: { keyword: value } });
         dispatch(setCategory(value));
         dispatch(setCountry('전 세계'));
         dispatch(setArticleList(res.data.articles));
@@ -27,6 +30,9 @@ const SearchBar = () => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        dispatch(setIsLoading(false));
       });
   };
 

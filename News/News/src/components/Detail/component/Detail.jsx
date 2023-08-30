@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ArticleContent } from '../../../styles/StyleSheet';
 import DetailHeader from './DetailHeader';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setIsLoading } from '../../../store/slices/utilSlice';
 
 const Detail = () => {
@@ -14,7 +14,7 @@ const Detail = () => {
   const [data, setData] = useState(null);
   const fetchData = async (url) => {
     dispatch(setIsLoading(true));
-    const options = {
+    const option1 = {
       method: 'POST',
       url: 'https://magicapi-article-extraction.p.rapidapi.com/extract',
       headers: {
@@ -28,7 +28,7 @@ const Detail = () => {
     };
 
     try {
-      const response = await axios.request(options);
+      const response = await axios.request(option1);
       setData(response.data);
       console.log(response.data);
     } catch (error) {

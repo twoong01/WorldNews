@@ -33,7 +33,7 @@ const NewsCardItem = ({ value, articleNum }) => {
             {value.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {value.publishedAt.slice(0, 10)}
+            {value.publishedAt ? value.publishedAt.slice(0, 10) : null}
           </Typography>
         </CardContent>
       </CardActionArea>

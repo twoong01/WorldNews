@@ -6,12 +6,14 @@ import CurrentInfo from './CurrentInfo';
 
 const NewsCard = () => {
   const article_list = useSelector((state) => state.article.article_list);
+  const filteredArticleList = article_list.filter((value) => value.title !== null);
+
   return (
     <>
       <CurrentInfo />
       <NewsCardList>
-        {article_list &&
-          article_list.map((value, index) => (
+        {filteredArticleList &&
+          filteredArticleList.map((value, index) => (
             <NewsCardItemWrap key={index}>
               <NewsCardItem key={index} value={value} articleNum={index} />
             </NewsCardItemWrap>

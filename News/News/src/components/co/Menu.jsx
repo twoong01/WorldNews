@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DropDown, MenuItem, MenuWrap } from '../../styles/StyleSheet';
 import { categories, countryNames } from '../../utils/constans';
@@ -10,6 +10,7 @@ import {
   setArticleList,
 } from '../../store/slices/articleSlice';
 import { useNavigate } from 'react-router-dom';
+import { setIsLoading } from '../../store/slices/utilSlice';
 
 const Menu = ({ open }) => {
   const dispatch = useDispatch();
@@ -32,8 +33,9 @@ const Menu = ({ open }) => {
       ),
     }));
   };
-  const changeCategory = (category) => {
-    axios
+  const changeCategory = useCallback(async (category) => {
+    dispatch(setIsLoading(true));
+    await axios
       .get(
         `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}`
       )
@@ -43,33 +45,27 @@ const Menu = ({ open }) => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        dispatch(setIsLoading(false));
       });
-  };
+  });
   const handleCategory = (category) => {
     navigate('/');
     dispatch(setCategory(category));
     changeCategory(category);
+    setDropDownState({ country: false, category: false });
   };
 
   const changeCountry = (countryCode) => {
+    navigate('/');
     dispatch(setCountry(countryCode));
     dispatch(setCategoryReset());
+    setDropDownState({ country: false, category: false });
   };
 
   return (
     <MenuWrap>
-      <MenuItem>
-        <div onClick={() => handleDropDown('category')}>Category</div>
-        {dropDownState.category && (
-          <DropDown>
-            {Object.entries(categories).map(([category, displayName], index) => (
-              <div key={index} onClick={() => handleCategory(category)}>
-                {displayName}
-              </div>
-            ))}
-          </DropDown>
-        )}
-      </MenuItem>
       <MenuItem>
         <div onClick={() => handleDropDown('country')}>Country</div>
         {dropDownState.country && (
@@ -77,6 +73,18 @@ const Menu = ({ open }) => {
             {Object.entries(countryNames).map(([countryCode, countryName], index) => (
               <div key={index} onClick={() => changeCountry(countryCode)}>
                 {countryName}
+              </div>
+            ))}
+          </DropDown>
+        )}
+      </MenuItem>
+      <MenuItem>
+        <div onClick={() => handleDropDown('category')}>Category</div>
+        {dropDownState.category && (
+          <DropDown>
+            {Object.entries(categories).map(([category, displayName], index) => (
+              <div key={index} onClick={() => handleCategory(category)}>
+                {displayName}
               </div>
             ))}
           </DropDown>

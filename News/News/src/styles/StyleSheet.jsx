@@ -31,6 +31,7 @@ export const MenuButton = styled.div`
 export const TitleWrap = styled.h1`
   margin: 0;
   color: #fc4308;
+  cursor: pointer;
 `;
 
 export const LeftHeader = styled.div`
@@ -95,6 +96,7 @@ export const MenuWrap = styled.nav`
 export const MenuItem = styled.div`
   font-size: 20px;
   padding-left: 68px;
+  cursor: pointer;
   :hover {
     cursor: pointer;
   }
@@ -291,8 +293,14 @@ export const HashTagWrap = styled.div`
   margin-right: 10px;
 `;
 
+// SearchPage
 export const SearchPageWrap = styled.div``;
+export const SearchMount = styled.h3`
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+`;
 
+// LoadingSpinner
 const slide = keyframes`
   0% {
     left: -7rem;

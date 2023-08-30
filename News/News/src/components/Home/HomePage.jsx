@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { HomePageWrap } from '../../styles/StyleSheet';
 import NewsCard from './NewsCard/NewsCard';
 import Layout from '../co/Layout';
@@ -10,6 +10,7 @@ import {
 } from '../../store/slices/articleSlice';
 import { setTopArticle } from '../../store/slices/topSlice';
 import axios from 'axios';
+import { setIsLoading } from '../../store/slices/utilSlice';
 
 const HomePage = () => {
   const apiKey = '21389cfb13fd4f64a1143c0bfed8aedd';
@@ -17,8 +18,9 @@ const HomePage = () => {
   const category = useSelector((state) => state.article.category);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+  const fetchData = useCallback(async () => {
     if (category === null) {
+      dispatch(setIsLoading(true));
       dispatch(setCategory(null));
       const config1 = {
         headers: {
@@ -30,7 +32,7 @@ const HomePage = () => {
       };
 
       // 헤드라인 30개 api
-      axios
+      await axios
         .get(`https://newsapi.org/v2/top-headlines`, config1)
         .then((response) => {
           console.log('Top Headlines:', response.data);
@@ -44,9 +46,16 @@ const HomePage = () => {
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
+        })
+        .finally(() => {
+          dispatch(setIsLoading(false));
         });
     }
+  });
+  useEffect(() => {
+    fetchData();
   }, [country, category]);
+
   return (
     <HomePageWrap>
       <Layout>
