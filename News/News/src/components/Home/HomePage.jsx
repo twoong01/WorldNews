@@ -13,7 +13,7 @@ import axios from 'axios';
 import { setIsLoading } from '../../store/slices/utilSlice';
 
 const HomePage = () => {
-  const apiKey = '21389cfb13fd4f64a1143c0bfed8aedd';
+  const apiKey = import.meta.env.VITE_APP_NEWS_API_KEY;
   const country = useSelector((state) => state.article.country);
   const category = useSelector((state) => state.article.category);
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ const HomePage = () => {
           dispatch(setIsLoading(false));
         });
     }
-  });
+  }, [country, category, dispatch]);
   useEffect(() => {
     fetchData();
   }, [country, category]);

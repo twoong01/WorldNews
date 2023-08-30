@@ -9,7 +9,7 @@ import { setIsLoading } from '../../store/slices/utilSlice';
 
 const SearchBar = () => {
   const [value, setValue] = useState(null);
-  const API_KEY = '21389cfb13fd4f64a1143c0bfed8aedd';
+  const API_KEY = import.meta.env.VITE_APP_NEWS_API_KEY;
   const curDate = new Date();
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -21,7 +21,7 @@ const Menu = ({ open }) => {
   const navigate = useNavigate();
 
   const country = useSelector((state) => state.article.country);
-  const API_KEY = `21389cfb13fd4f64a1143c0bfed8aedd`;
+  const API_KEY = import.meta.env.VITE_APP_NEWS_API_KEY;
   const handleDropDown = (menu) => {
     setDropDownState((prevState) => ({
       ...Object.keys(prevState).reduce(

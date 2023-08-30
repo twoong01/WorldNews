@@ -2,7 +2,7 @@ import React from 'react';
 import { CurInfo } from '../../../styles/StyleSheet';
 import { useSelector } from 'react-redux';
 import { countryNames, categories } from '../../../utils/constans';
-import HashTag from '../../Utils/HashTag';
+import HashTag from '../../co/HashTag';
 
 const CurrentInfo = () => {
   const country = useSelector((state) => state.article.country);
