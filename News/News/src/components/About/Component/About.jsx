@@ -15,7 +15,6 @@ import {
 import Responsive from '../../../assets/Responsive.svg';
 import Blub from '../../../assets/Bulb.svg';
 import Easy from '../../../assets/Easy.svg';
-import Papago from '../../../assets/Papago.svg';
 import Rapid from '../../../assets/Rapid.svg';
 
 const About = () => {
@@ -50,10 +49,6 @@ const About = () => {
       <ContentWrap>
         <Content>
           <ApiName>NewsAPI</ApiName>
-        </Content>
-        <Content>
-          <Icon $url={Papago} />
-          <ApiName>PaPagoAPI</ApiName>
         </Content>
         <Content>
           <Icon $url={Rapid} />

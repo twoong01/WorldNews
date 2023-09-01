@@ -1,9 +1,15 @@
 import React from 'react';
-import { ArticleAuthor, ArticleHeaderWrap, ArticleSite, ArticleTime, ArticleTitle, DetailInfo } from '../../../styles/StyleSheet';
+import {
+  ArticleAuthor,
+  ArticleHeaderWrap,
+  ArticleSite,
+  ArticleTime,
+  ArticleTitle,
+  DetailInfo,
+} from '../../../styles/StyleSheet';
 
-
-const DetailHeader = ({data, date}) => {
-  return(
+const DetailHeader = ({ data, date }) => {
+  return (
     <ArticleHeaderWrap>
       <ArticleSite>{data.siteName}</ArticleSite>
       <ArticleTitle>{data.title}</ArticleTitle>
@@ -12,7 +18,7 @@ const DetailHeader = ({data, date}) => {
         <ArticleAuthor>{data.author ? data.author : '익명'}</ArticleAuthor>
       </DetailInfo>
     </ArticleHeaderWrap>
-  )
-}
+  );
+};
 
-export default DetailHeader
+export default DetailHeader;

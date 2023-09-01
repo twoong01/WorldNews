@@ -146,6 +146,53 @@ export const NewsCardItemWrap = styled.div`
   justify-self: center; // inline-block을 선언하고 grid의 중앙에 정렬하기 위함
 `;
 
+// Detail
+export const TranslateBtn = styled.button`
+  overflow: hidden;
+  padding: 0;
+  width: 120px;
+  position: relative;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  &.button--inverted {
+    color: #fff;
+  }
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 42.19px;
+    background: #fc4308;
+    color: white;
+    transform: translate3d(-100%, 0, 0);
+    text-align: center;
+  }
+
+  > span {
+    display: block;
+    padding: 1em 2em;
+  }
+
+  &::before,
+  > span {
+    padding-top: 1em;
+    transition: transform 0.3s;
+    transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  }
+
+  &:hover::before {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &:hover > span {
+    transform: translate3d(0, 100%, 0);
+  }
+`;
 // DetailPage
 export const DetailWrap = styled.div``;
 
